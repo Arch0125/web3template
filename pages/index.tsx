@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useWeb3 } from './api/context/Web3.context'
+import { useWeb3 } from './api/components/context/Web3.context'
 
 interface Props{
   walletAddress:string,
@@ -21,9 +21,8 @@ const Home: NextPage<Props> = (props:Props) => {
 
   return (
     <div>
-      <h1>Hello World</h1>
-      <label>{addr}</label>
-      <button onClick={connectWallet} >Connect Wallet</button>
+      <p>{addr.substring(0,5)+'...'+addr.substring(39)}</p>
+      <button className='btn btn-active btn-accent' onClick={connectWallet} >Connect Wallet</button>
     </div>
   )
 }

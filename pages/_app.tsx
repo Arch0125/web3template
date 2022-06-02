@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Web3Provider } from './api/context/Web3.context'
+import { Web3Provider } from './api/components/context/Web3.context'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
