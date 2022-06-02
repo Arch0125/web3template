@@ -6,6 +6,7 @@ import { useContext, createContext, useState, useEffect } from 'react';
 interface AppContextInterface{
     walletAddress:string,
     checkIfWalletIsConnected:Function,
+    isConnected:boolean,
 }
 
 const Web3Context = React.createContext<AppContextInterface | null>(null);
@@ -15,7 +16,8 @@ interface props {
 }
 
 export const Web3Provider: NextPage<props> = ({children}) =>{
-  const[walletAddress,setWalletAddress]=useState('No account Connected');
+  const[walletAddress,setWalletAddress]=useState('');
+  const[isConnected,setIsConnected]=useState(false);
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -25,6 +27,7 @@ export const Web3Provider: NextPage<props> = ({children}) =>{
         })
         var account = accounts[0];
         setWalletAddress(account);
+        setIsConnected(true)
       } else {
         console.log('No Metamask detected')
       }
@@ -35,7 +38,7 @@ export const Web3Provider: NextPage<props> = ({children}) =>{
   
   return(
     <Web3Context.Provider 
-    value={{walletAddress,checkIfWalletIsConnected}}>
+    value={{walletAddress,checkIfWalletIsConnected,isConnected}}>
       {children}
     </Web3Context.Provider>
   )
