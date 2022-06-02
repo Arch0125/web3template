@@ -12,11 +12,10 @@ const Web3Context = React.createContext<AppContextInterface | null>(null);
 
 interface props {
     children: any
-  
 }
 
 export const Web3Provider: NextPage<props> = ({children}) =>{
-  const[walletAddress,setWalletAddress]=useState('');
+  const[walletAddress,setWalletAddress]=useState('No account Connected');
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -37,6 +36,7 @@ export const Web3Provider: NextPage<props> = ({children}) =>{
   return(
     <Web3Context.Provider 
     value={{walletAddress,checkIfWalletIsConnected}}>
+      {children}
     </Web3Context.Provider>
   )
 }
