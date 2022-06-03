@@ -19,6 +19,7 @@ interface AppContextInterface {
   connectWalletconnect: Function
   signMessage: Function
   currentWallet: any
+  killSession:Function
 }
 
 const MetamaskContext: Context<AppContextInterface | null> =
@@ -287,6 +288,7 @@ export const MetaMaskProvider = ({ children }: Props) => {
         balance,
         signMessage,
         currentWallet,
+        killSession
       }}
     >
       {children}

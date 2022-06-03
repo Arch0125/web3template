@@ -27,6 +27,7 @@ export const ConnectedModal =() =>{
         balance,
         signMessage,
         currentWallet,
+        killSession
       } = useMetamask()
       
       const { isOpen, onOpen, onClose } = useDisclosure()
@@ -49,8 +50,8 @@ export const ConnectedModal =() =>{
               </ModalBody>
     
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
-                  Close
+                <Button colorScheme='blue' mr={3} onClick={() => killSession()}>
+                  Disconnect Wallet
                 </Button>
               </ModalFooter>
             </ModalContent>
