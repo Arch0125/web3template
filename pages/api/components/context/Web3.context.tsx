@@ -2,6 +2,8 @@ import * as React from 'react';
 import type { NextPage } from 'next'
 import { FC } from 'react';
 import { useContext, createContext, useState, useEffect } from 'react';
+import { ethers, providers } from 'ethers';
+import Web3 from 'web3';
 
 interface AppContextInterface{
     walletAddress:string,
@@ -18,15 +20,19 @@ interface props {
 export const Web3Provider: NextPage<props> = ({children}) =>{
   const[walletAddress,setWalletAddress]=useState('');
   const[isConnected,setIsConnected]=useState(false);
+  const [balance, setBalance] = useState<string | null>(null)
+
 
   const checkIfWalletIsConnected = async () => {
     try {
       if (window.ethereum) {
         const accounts = await window.ethereum.request({
           method: 'eth_requestAccounts',
-        })
+        })  
+        var webprovider = new ethers.providers.Web3Provider(window.ethereum)
         var account = accounts[0];
         setWalletAddress(account);
+        console.log(webprovider)
         setIsConnected(true)
       } else {
         console.log('No Metamask detected')

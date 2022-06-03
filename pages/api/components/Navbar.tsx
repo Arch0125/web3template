@@ -1,11 +1,24 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
 import * as React from 'react';
+import { NotConnectedModal } from './NotConnectedModal';
 import { useWeb3 } from './context/Web3.context';
-import { WalletConnectModal } from './WalletConnectModal';
+import { ConnectedModal } from './ConnectedModal';
+import { useMetamask } from './context/metamask.context';
 
 export const Navbar =() =>{
 
     const web3Provider = useWeb3();
+    const {
+        isWalletConnected,
+        walletAddress,
+        connectMetamask,
+        connectWalletconnect,
+        chain,
+        changeChain,
+        balance,
+        signMessage,
+        currentWallet,
+      } = useMetamask()
 
     return(
         < >
@@ -14,7 +27,7 @@ export const Navbar =() =>{
                     <Button>OnChain</Button>
                 </Box>
                 <Box paddingLeft={"40vw"}>
-                    <WalletConnectModal/>
+                {isWalletConnected && walletAddress && chain && currentWallet ? <ConnectedModal/>:<NotConnectedModal/>}
                 </Box>
             </Flex>
         </>
