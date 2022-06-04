@@ -15,6 +15,7 @@ import {
   import { useMetamask } from './context/metamask.context'
   import { Badge } from '@chakra-ui/react';
   import { CHAIN_DICT } from './context/constant';
+import { NetworkList } from './NetworkList';
 
 export const ConnectedModal =() =>{
     const {
@@ -44,6 +45,7 @@ export const ConnectedModal =() =>{
               <ModalHeader textAlign={"center"}>Connected Wallet</ModalHeader>
               <ModalCloseButton />
               <ModalBody textAlign={"center"} >
+                  <NetworkList/>
                   <Text fontSize={"15px"} fontWeight={"bold"}>Balance : {balance}</Text>
                   <Text fontSize={"15px"} fontWeight={"bold"}>Connected Wallet : {currentWallet}</Text>
                   <Text fontSize={"15px"} fontWeight={"bold"}>Current Network : {network}</Text>
